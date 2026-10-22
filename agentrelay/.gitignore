@@ -1,0 +1,17 @@
+target/
+frontend/node_modules/
+frontend/dist/
+sharman-mcp/node_modules/
+sharman-mcp/dist/
+sharman-mcp/.data/
+sharman-web/node_modules/
+sharman-web/dist/
+*.db
+*.db-shm
+*.db-wal
+.env
+.idea/
+.vscode/
+*.iml
+*.log
+.DS_Store

@@ -1,0 +1,20 @@
+{
+  "_fixture": true,
+  "_source": "Official Ring Developer documentation",
+  "_captured": false,
+  "_schema": "https://developer.amazon.com/docs/ring/api-documentation.html#device-discovery",
+  "_note": "Sanitized schema example with synthetic identifiers. The owner supplied only a collapsed Device List fragment, not a complete captured response.",
+  "data": [
+    {
+      "type": "devices",
+      "id": "fixture-ring-discovery-device",
+      "attributes": { "name": "Documentation example camera" },
+      "relationships": {
+        "status": {
+          "data": { "type": "device-status", "id": "fixture-ring-discovery-status" },
+          "links": { "related": "/v1/devices/fixture-ring-discovery-device/status" }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+[package]
+name = "agentrelay-desktop"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Windows-native Tauri shell for AgentRelay"
+
+[lib]
+name = "agentrelay_desktop_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "=2.6.3", features = [] }
+
+[dependencies]
+agentrelay-core = { path = "../../crates/agentrelay-core" }
+serde.workspace = true
+serde_json = "1"
+chrono.workspace = true
+base64 = "0.22"
+getrandom = "0.3"
+notify = "8.2"
+rfd = "0.15"
+rusqlite = { version = "0.37", features = ["bundled"] }
+sha2 = "0.10"
+sysinfo = "0.39"
+tauri = { version = "=2.11.5", features = ["tray-icon"] }
+tauri-plugin-notification = "2.4"
+tauri-plugin-single-instance = "=2.4.4"
+ureq = { version = "2.12", features = ["json"] }
+url = "2.5"
+zip = { version = "2", default-features = false, features = ["deflate"] }
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.55"
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Security_Credentials"] }
+
+[dev-dependencies]
+tempfile = "3"

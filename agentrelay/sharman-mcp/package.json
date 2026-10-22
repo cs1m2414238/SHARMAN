@@ -1,0 +1,33 @@
+{
+  "name": "@sharman/mcp-bridge",
+  "version": "0.23.0-alpha.1",
+  "private": true,
+  "type": "module",
+  "description": "SHARMAN Streamable HTTP MCP bridge and local web API for the Amazon Alexa+ demo.",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "test": "tsx --test src/store.test.ts src/bedrock.test.ts src/email.test.ts src/ring.test.ts src/ring-playground.test.ts",
+    "test:e2e": "npm run build && node scripts/home-e2e.mjs && node scripts/ring-e2e.mjs",
+    "validate:bedrock": "node scripts/bedrock-live-validation.mjs",
+    "validate:ring-playground": "npm run build && node scripts/ring-playground-live.mjs",
+    "validate:ring-api": "npm run build && node scripts/ring-playground-live.mjs --metadata-only",
+    "import:ring-capture": "node scripts/import-ring-capture.mjs"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.1149.0",
+    "@modelcontextprotocol/express": "^2.0.2",
+    "@modelcontextprotocol/node": "^2.1.1",
+    "@modelcontextprotocol/server": "^2.3.1",
+    "express": "^5.3.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.10.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

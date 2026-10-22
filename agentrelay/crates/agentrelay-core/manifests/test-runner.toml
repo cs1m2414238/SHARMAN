@@ -1,0 +1,18 @@
+id = "test-runner"
+name = "Controlled Test Runner"
+version = "0.1.0"
+kind = "automation"
+description = "Requests tests through the AgentRelay permission and sandbox boundary"
+
+[capabilities]
+allowedActions = ["runTests"]
+maxContextTokens = 6000
+terminal = true
+
+[permissions]
+readRepo = true
+runCommands = false
+
+[adapters]
+eventTypes = ["test.started", "test.completed"]
+actions = ["runTests"]

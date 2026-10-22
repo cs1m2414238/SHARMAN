@@ -1,0 +1,11 @@
+{
+  "_fixture": true,
+  "_source": "Ring Developer Playground",
+  "_capture": "User-supplied device-status response. Source device must come from the requested endpoint; data.id is an opaque status-resource ID.",
+  "data": {
+    "type": "device-status",
+    "id": "ava1.ring.device.status.OVDZOGSUSQXFTXJT47PSAIPRDF6DRLWKVHLJXLJ7CPGBCKDH3MVZDX6GVQUNYGBJF4LXPXQZBQ7MRMYDQ3O7WU6MMKVV2HDN",
+    "attributes": { "state": null, "online": true, "reported_at": "2026-10-21T16:35:31Z", "audio": { "snooze": { "active": null, "until": null } } }
+  },
+  "meta": { "time": "2026-10-21T16:40:47Z" }
+}

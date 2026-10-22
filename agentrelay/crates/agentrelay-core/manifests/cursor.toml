@@ -1,0 +1,26 @@
+id = "cursor"
+name = "Cursor"
+version = "0.1.0"
+kind = "provider"
+description = "Cursor editor and agent provider"
+
+[capabilities]
+strengths = ["frontend", "typeScript", "testing"]
+allowedActions = ["runTests"]
+maxContextTokens = 6000
+codeEdit = true
+terminal = true
+
+[detection]
+rules = [
+  { process = "cursor.exe", commandContains = ["--agent", "cursor-agent"] },
+  { process = "cursor-agent.exe" }
+]
+
+[permissions]
+readRepo = true
+
+[adapters]
+eventTypes = ["ide.workspace", "ide.active_file", "ide.files_changed"]
+actions = ["runTests"]
+handoffFormat = "markdown"

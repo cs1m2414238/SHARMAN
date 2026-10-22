@@ -1,0 +1,18 @@
+id = "build-runner"
+name = "Controlled Build Runner"
+version = "0.1.0"
+kind = "automation"
+description = "Requests builds through the AgentRelay permission and sandbox boundary"
+
+[capabilities]
+allowedActions = ["runBuild"]
+maxContextTokens = 6000
+terminal = true
+
+[permissions]
+readRepo = true
+runCommands = false
+
+[adapters]
+eventTypes = ["build.started", "build.completed"]
+actions = ["runBuild"]

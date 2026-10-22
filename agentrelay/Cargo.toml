@@ -1,0 +1,19 @@
+[workspace]
+members = ["crates/agentrelay-core", "frontend/src-tauri"]
+resolver = "2"
+
+[workspace.package]
+version = "0.22.1-alpha.1"
+edition = "2021"
+license = "MIT"
+
+[workspace.dependencies]
+chrono = { version = "0.4", features = ["serde"] }
+serde = { version = "1", features = ["derive"] }
+thiserror = "2"
+toml = "0.9"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true

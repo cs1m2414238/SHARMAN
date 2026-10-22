@@ -1,0 +1,26 @@
+id = "gemini"
+name = "Gemini CLI"
+version = "0.1.0"
+kind = "provider"
+description = "Google Gemini CLI provider adapter"
+
+[capabilities]
+strengths = ["research", "documentation", "architecture"]
+maxContextTokens = 12000
+terminal = true
+planning = true
+documentation = true
+
+[detection]
+rules = [
+  { process = "gemini.exe" },
+  { process = "gemini" },
+  { process = "node.exe", commandContains = ["@google/gemini-cli", "gemini-cli"] }
+]
+
+[permissions]
+readRepo = true
+
+[adapters]
+eventTypes = ["*"]
+handoffFormat = "markdown"

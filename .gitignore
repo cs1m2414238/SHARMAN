@@ -22,3 +22,48 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Earlier standalone dashboard; the active console is agentrelay/sharman-web/.
+/sharman-web/
+
+# Documentation, handoffs and project tracking stay local.
+docs/
+documentation/
+notes/
+*.md
+*.markdown
+notes*.txt
+AGENT_CONTEXT*
+.agentrelay/
+.agentrelay-worktrees/
+
+# Local runtime state and generated build files.
+target/
+.data/
+.cache/
+coverage/
+*.tsbuildinfo
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+agentrelay/frontend/src-tauri/gen/
+agentrelay/workspace/
+
+# Credentials are supplied at runtime. Only empty example files may be tracked.
+.aws/
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+credentials
+credentials.json
+client_secret*.json
+token.json
+tokens.json
+*.pem
+*.p12
+*.pfx
+*.key

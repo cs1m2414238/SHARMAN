@@ -1,0 +1,14 @@
+id = "vscode"
+name = "Visual Studio Code"
+version = "0.1.0"
+kind = "developerTool"
+description = "Normalizes IDE workspace and active-file state"
+
+[capabilities]
+maxContextTokens = 6000
+
+[permissions]
+readRepo = true
+
+[adapters]
+eventTypes = ["ide.workspace", "ide.active_file", "ide.files_changed"]

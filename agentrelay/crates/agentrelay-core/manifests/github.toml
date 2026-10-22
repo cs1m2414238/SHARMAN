@@ -1,0 +1,14 @@
+id = "github"
+name = "GitHub"
+version = "0.2.0"
+kind = "developerTool"
+description = "Synchronizes GitHub issues, pull requests, reviews, and CI through core-owned delivery state"
+
+[capabilities]
+maxContextTokens = 6000
+
+[permissions]
+readRepo = true
+
+[adapters]
+eventTypes = ["issue.opened", "issue.updated", "issue.closed", "pull_request.opened", "pull_request.updated", "pull_request.ready", "pull_request.merged", "review.comment", "check.started", "check.completed"]

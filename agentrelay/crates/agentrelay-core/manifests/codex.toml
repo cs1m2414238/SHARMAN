@@ -1,0 +1,30 @@
+id = "codex"
+name = "Codex"
+version = "0.1.0"
+kind = "provider"
+description = "OpenAI Codex provider adapter"
+
+[capabilities]
+strengths = ["backend", "testing", "rust", "refactoring"]
+allowedActions = ["runTests", "runBuild"]
+maxContextTokens = 8000
+codeEdit = true
+terminal = true
+planning = true
+
+[detection]
+rules = [
+  { process = "codex.exe" },
+  { process = "codex" },
+  { process = "node.exe", commandContains = ["@openai/codex", "codex-cli"] }
+]
+
+[permissions]
+readRepo = true
+writeRepo = false
+runCommands = false
+
+[adapters]
+eventTypes = ["*"]
+actions = ["runTests", "runBuild"]
+handoffFormat = "markdown"

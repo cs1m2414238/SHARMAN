@@ -1,0 +1,175 @@
+{
+  "checkpoint": "Checkpoint 1 (Phase A: Household Foundation)",
+  "version": "v0.26.0-home.1",
+  "generated_at": "2026-10-21T02:30:00Z",
+  "fixtures": {
+    "zones": [
+      {
+        "id": "zone_exterior_front",
+        "name": "Front Porch & Entry",
+        "category": "exterior"
+      },
+      {
+        "id": "zone_interior_ground",
+        "name": "Ground Floor Living & Hallway",
+        "category": "interior"
+      },
+      {
+        "id": "zone_perimeter_rear",
+        "name": "Backyard Garden Gate",
+        "category": "perimeter"
+      }
+    ],
+    "access_points": [
+      {
+        "id": "ap_front_entry",
+        "zone_id": "zone_exterior_front",
+        "name": "Main Front Door",
+        "kind": "exterior_door",
+        "is_monitored": true
+      },
+      {
+        "id": "ap_garden_gate",
+        "zone_id": "zone_perimeter_rear",
+        "name": "Garden Gate",
+        "kind": "gate",
+        "is_monitored": true
+      },
+      {
+        "id": "ap_patio_slider",
+        "zone_id": "zone_interior_ground",
+        "name": "Patio Sliding Window",
+        "kind": "window",
+        "is_monitored": false
+      }
+    ],
+    "schedules": [
+      {
+        "id": "sched_overnight_curfew",
+        "label": "Overnight Quiet & Curfew Window",
+        "category": "curfew",
+        "iana_timezone": "America/New_York",
+        "start_time": "22:30",
+        "end_time": "06:15",
+        "days_of_week": [1, 2, 3, 4, 5],
+        "target_zone_id": "zone_exterior_front",
+        "is_active": true
+      },
+      {
+        "id": "sched_expected_deliveries",
+        "label": "Expected Afternoon Delivery Window",
+        "category": "expected_window",
+        "iana_timezone": "America/New_York",
+        "start_time": "14:00",
+        "end_time": "18:00",
+        "days_of_week": [1, 2, 3, 4, 5, 6],
+        "target_zone_id": "zone_exterior_front",
+        "is_active": true
+      }
+    ],
+    "members": [
+      {
+        "id": "mbr_primary_owner",
+        "name": "Devin Vance",
+        "role": "owner",
+        "presence": "unknown",
+        "initial_presence": "unknown",
+        "presence_updated_at": "2026-10-21T00:00:00Z",
+        "enrolled_credentials": ["fp_primary_thumb", "nfc_keycard_alpha"],
+        "created_at": "2026-10-21T00:00:00Z"
+      },
+      {
+        "id": "mbr_trusted_caregiver",
+        "name": "Sarah Chen",
+        "role": "caregiver",
+        "presence": "unknown",
+        "initial_presence": "unknown",
+        "presence_updated_at": "2026-10-21T00:00:00Z",
+        "enrolled_credentials": ["pin_caregiver_guest"],
+        "created_at": "2026-10-21T00:00:00Z"
+      },
+      {
+        "id": "mbr_guest_visitor",
+        "name": "Temporary Contractor",
+        "role": "guest",
+        "presence": "absent",
+        "initial_presence": "unknown",
+        "presence_updated_at": "2026-10-21T00:00:00Z",
+        "enrolled_credentials": [],
+        "created_at": "2026-10-21T00:00:00Z"
+      }
+    ],
+    "sample_events": {
+      "valid_doorbell_ring": {
+        "source": "ring_doorbell_front",
+        "source_event_id": "ring_ev_99201",
+        "occurred_at": "2026-10-21T02:15:30Z",
+        "event_type": "doorbell_ring",
+        "zone_id": "zone_exterior_front",
+        "access_point_id": "ap_front_entry",
+        "subject_id": null,
+        "severity": "attention",
+        "payload": {
+          "motion_triggered": true,
+          "has_live_stream": true,
+          "battery_percentage": 88
+        }
+      },
+      "duplicate_doorbell_ring": {
+        "source": "ring_doorbell_front",
+        "source_event_id": "ring_ev_99201",
+        "occurred_at": "2026-10-21T02:15:30Z",
+        "event_type": "doorbell_ring",
+        "zone_id": "zone_exterior_front",
+        "access_point_id": "ap_front_entry",
+        "subject_id": null,
+        "severity": "attention",
+        "payload": {
+          "motion_triggered": true,
+          "has_live_stream": true,
+          "battery_percentage": 88
+        }
+      },
+      "out_of_order_contact_sensor": {
+        "source": "zigbee_contact_sensor",
+        "source_event_id": "zg_contact_8812",
+        "occurred_at": "2026-10-21T02:10:00Z",
+        "event_type": "door_open",
+        "zone_id": "zone_exterior_front",
+        "access_point_id": "ap_front_entry",
+        "subject_id": null,
+        "severity": "normal",
+        "payload": {
+          "sensor_model": "Aqara-DW-V2",
+          "tamper": false
+        }
+      },
+      "presence_transition": {
+        "source": "geofence_service",
+        "source_event_id": "geo_trans_441",
+        "occurred_at": "2026-10-21T02:20:00Z",
+        "event_type": "occupancy_change",
+        "zone_id": null,
+        "access_point_id": null,
+        "subject_id": "mbr_primary_owner",
+        "severity": "normal",
+        "payload": {
+          "previous_status": "unknown",
+          "new_status": "present",
+          "transition_reason": "wifi_mac_association"
+        }
+      },
+      "malformed_event_missing_source": {
+        "source": "",
+        "source_event_id": "",
+        "occurred_at": "2026-10-21T02:25:00Z",
+        "event_type": "motion_detected",
+        "zone_id": null,
+        "access_point_id": null,
+        "subject_id": null,
+        "severity": "normal",
+        "payload": {}
+      }
+    }
+  }
+}

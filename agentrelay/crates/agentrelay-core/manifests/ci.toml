@@ -1,0 +1,14 @@
+id = "ci"
+name = "CI Results"
+version = "0.1.0"
+kind = "automation"
+description = "Normalizes CI workflows, checks and build results"
+
+[capabilities]
+maxContextTokens = 6000
+
+[permissions]
+readRepo = true
+
+[adapters]
+eventTypes = ["ci.started", "ci.completed", "workflow.completed", "check.completed", "build.completed", "test.completed"]

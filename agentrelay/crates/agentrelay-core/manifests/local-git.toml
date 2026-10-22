@@ -1,0 +1,14 @@
+id = "local-git"
+name = "Local Git"
+version = "0.1.0"
+kind = "developerTool"
+description = "Normalizes local branch, commit and tag state"
+
+[capabilities]
+maxContextTokens = 6000
+
+[permissions]
+readRepo = true
+
+[adapters]
+eventTypes = ["*"]

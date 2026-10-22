@@ -1,0 +1,160 @@
+/* System fonts work offline and respect Windows' native glyph rendering.
+   Keep these project-specific overrides separate from the assistant layout. */
+body, button, input, select, textarea {
+  font-family: var(--font-sans);
+}
+
+pre, code, kbd, samp {
+  font-family: var(--font-mono);
+}
+
+.integrations-workspace {
+  color: #edf2f7;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.integrations-workspace :is(button, input, select, textarea) {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.integrations-workspace :is(button, input, select) {
+  min-height: 40px;
+}
+
+.integrations-workspace input::placeholder,
+.integrations-workspace textarea::placeholder {
+  color: #a5b2c1;
+  opacity: 1;
+}
+
+.integrations-workspace .view-heading > div > p:not(.section-label),
+.integrations-workspace .github-sync-card p:not(.section-label),
+.integrations-workspace .plugin-directory p,
+.integrations-workspace .plugin-card > p,
+.integrations-workspace .external-event-form > div:first-child p:last-child {
+  color: #b9c5d3;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.integrations-workspace .section-label,
+.integrations-workspace .plugin-directory span {
+  color: #a4efb0;
+  font: 600 12px/1.5 var(--font-sans);
+  letter-spacing: .08em;
+}
+
+.integrations-workspace .registry-group-heading .section-label {
+  font-size: 15px;
+  letter-spacing: .02em;
+}
+
+.integrations-workspace .github-sync-card h3 {
+  color: #f2f5fa;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.integrations-workspace .plugin-heading h3 {
+  color: #f2f5fa;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.integrations-workspace .plugin-heading span,
+.integrations-workspace .registry-group-heading > span {
+  color: #a9ceff;
+  font: 600 12px/1.5 var(--font-sans);
+  letter-spacing: .03em;
+}
+
+.integrations-workspace .plugin-heading em {
+  flex-shrink: 0;
+  color: #c3cedb;
+  font: 500 12px/1.5 var(--font-sans);
+}
+
+.integrations-workspace .plugin-card {
+  gap: 12px;
+  padding: 18px;
+}
+
+.integrations-workspace .plugin-card > small,
+.integrations-workspace .github-sync-controls label,
+.integrations-workspace .external-event-form label {
+  color: #b4c0cf;
+  font: 400 13px/1.6 var(--font-sans);
+}
+
+.integrations-workspace .plugin-meta code {
+  color: #c3cedb;
+  font: 500 12px/1.5 var(--font-sans);
+}
+
+.integrations-workspace .plugin-tags span {
+  color: #b2f3bc;
+  font: 500 12px/1.5 var(--font-sans);
+}
+
+.integrations-workspace .plugin-meta,
+.integrations-workspace .plugin-tags,
+.integrations-workspace .plugin-actions {
+  gap: 7px;
+}
+
+.integrations-workspace .plugin-actions button {
+  color: #e2e9f2;
+  font-weight: 600;
+}
+
+.integrations-workspace .plugin-directory {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+.integrations-workspace .plugin-directory code,
+.integrations-workspace .registry-errors code,
+.integrations-workspace .json-input {
+  color: #ced8e4;
+  font: 13px/1.65 var(--font-mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.integrations-workspace .plugin-directory :is(div, p),
+.integrations-workspace .plugin-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.integrations-workspace .sdk-badge :is(span, small) {
+  color: #b4c5dc;
+  font: 500 12px/1.5 var(--font-sans);
+}
+
+.integrations-workspace .sdk-badge strong {
+  font: 600 18px/1.5 var(--font-sans);
+}
+
+.integrations-workspace .registry-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+@media (max-width: 760px) {
+  .integrations-workspace .plugin-directory,
+  .integrations-workspace .github-sync-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .integrations-workspace .github-sync-controls {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

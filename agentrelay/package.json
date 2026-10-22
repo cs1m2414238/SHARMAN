@@ -1,0 +1,13 @@
+{
+  "name": "sharman-release-tools",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate:amazon": "node scripts/validate-amazon.mjs",
+    "rehearse:amazon": "node scripts/judge-rehearsal.mjs",
+    "test:release": "node --test scripts/release/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

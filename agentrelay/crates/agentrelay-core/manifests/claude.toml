@@ -1,0 +1,31 @@
+id = "claude"
+name = "Claude Code"
+version = "0.1.0"
+kind = "provider"
+description = "Anthropic Claude Code provider adapter"
+
+[capabilities]
+strengths = ["architecture", "backend", "refactoring", "research", "documentation"]
+allowedActions = ["runTests", "runBuild"]
+maxContextTokens = 12000
+codeEdit = true
+terminal = true
+planning = true
+documentation = true
+
+[detection]
+rules = [
+  { process = "claude.exe" },
+  { process = "claude" },
+  { process = "node.exe", commandContains = ["@anthropic-ai/claude-code", "claude-code"] }
+]
+
+[permissions]
+readRepo = true
+writeRepo = false
+runCommands = false
+
+[adapters]
+eventTypes = ["*"]
+actions = ["runTests", "runBuild"]
+handoffFormat = "markdown"

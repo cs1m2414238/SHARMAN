@@ -1,0 +1,33 @@
+{
+  "serviceArn": "arn:aws:ecs:ap-southeast-2:926642724277:service/sharman-judging/sharman-amazon-demo",
+  "primaryContainer": {
+    "image": "926642724277.dkr.ecr.ap-southeast-2.amazonaws.com/sharman-amazon-demo:judging-20261022-db343a98",
+    "containerPort": 4179,
+    "awsLogsConfiguration": {
+      "logGroup": "/ecs/sharman-amazon-demo",
+      "logStreamPrefix": "judging"
+    },
+    "environment": [
+      {
+        "name": "SHARMAN_MCP_ALLOWED_HOSTS",
+        "value": "sh-62bba116286d48cfb495d1a3677193ba.ecs.ap-southeast-2.on.aws"
+      },
+      {
+        "name": "NODE_ENV",
+        "value": "production"
+      },
+      {
+        "name": "AWS_REGION",
+        "value": "ap-southeast-2"
+      },
+      {
+        "name": "SHARMAN_AWS_BEDROCK_ENABLED",
+        "value": "false"
+      },
+      {
+        "name": "TZ",
+        "value": "Asia/Kolkata"
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+FROM node:24-bookworm-slim AS build
+WORKDIR /build
+COPY sharman-mcp/package*.json sharman-mcp/
+COPY sharman-web/package*.json sharman-web/
+RUN npm --prefix sharman-mcp ci && npm --prefix sharman-web ci
+COPY sharman-mcp/tsconfig.json sharman-mcp/
+COPY sharman-mcp/src/ sharman-mcp/src/
+COPY sharman-web/index.html sharman-web/tsconfig*.json sharman-web/vite.config.ts sharman-web/
+COPY sharman-web/src/ sharman-web/src/
+RUN npm --prefix sharman-mcp run build && npm --prefix sharman-web run build
+RUN npm --prefix sharman-mcp prune --omit=dev && mkdir -p /build/data
+
+FROM gcr.io/distroless/nodejs24-debian13:nonroot
+WORKDIR /app/sharman-mcp
+COPY --from=build --chown=65532:65532 /build/sharman-mcp/package.json ./
+COPY --from=build --chown=65532:65532 /build/sharman-mcp/node_modules ./node_modules
+COPY --from=build --chown=65532:65532 /build/sharman-mcp/dist ./dist
+COPY --from=build --chown=65532:65532 /build/sharman-web/dist /app/web
+COPY --from=build --chown=65532:65532 /build/data /app/data
+USER 65532:65532
+ENV SHARMAN_MCP_HOST=0.0.0.0 SHARMAN_MCP_PORT=4179 SHARMAN_WEB_DIST=/app/web SHARMAN_MCP_DATA_DIR=/app/data SHARMAN_AWS_BEDROCK_ENABLED=false
+EXPOSE 4179
+CMD ["dist/server.js"]

@@ -1,0 +1,25 @@
+id = "copilot"
+name = "GitHub Copilot"
+version = "0.1.0"
+kind = "provider"
+description = "GitHub Copilot agent provider"
+
+[capabilities]
+strengths = ["frontend", "typeScript", "testing"]
+allowedActions = ["runTests"]
+maxContextTokens = 6000
+codeEdit = true
+
+[detection]
+rules = [
+  { process = "code.exe", commandContains = ["github.copilot-chat", "copilot-agent"] },
+  { process = "copilot.exe" }
+]
+
+[permissions]
+readRepo = true
+
+[adapters]
+eventTypes = ["*"]
+actions = ["runTests"]
+handoffFormat = "markdown"

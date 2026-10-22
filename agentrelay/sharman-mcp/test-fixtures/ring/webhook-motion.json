@@ -1,0 +1,23 @@
+{
+  "_fixture": true,
+  "_source": "Official Ring Developer documentation",
+  "_schema": "https://developer.amazon.com/docs/ring/api-documentation.html#motion-detection",
+  "_captured": false,
+  "_note": "Schema-derived test data with synthetic identifiers, not a captured Playground or hardware event.",
+  "meta": {
+    "version": "1.1",
+    "time": "2026-10-21T12:00:01Z",
+    "request_id": "fixture-motion-request",
+    "account_id": "fixture-ring-account"
+  },
+  "data": {
+    "id": "fixture-motion-event",
+    "type": "motion_detected",
+    "attributes": {
+      "source": "fixture-ring-device",
+      "source_type": "devices",
+      "timestamp": 1792584000000,
+      "sub_type": "motion"
+    }
+  }
+}

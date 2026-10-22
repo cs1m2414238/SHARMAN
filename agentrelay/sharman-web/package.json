@@ -1,0 +1,24 @@
+{
+  "name": "@sharman/web-console",
+  "version": "0.23.0-alpha.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4180",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4180"
+  },
+  "dependencies": {
+    "framer-motion": "^14.1.0",
+    "lucide-react": "^1.55.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.0.4",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4"
+  }
+}

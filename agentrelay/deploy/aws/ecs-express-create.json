@@ -1,0 +1,26 @@
+{
+  "executionRoleArn": "arn:aws:iam::926642724277:role/ecsSharmanAmazonTaskExecutionRole",
+  "infrastructureRoleArn": "arn:aws:iam::926642724277:role/ecsSharmanAmazonExpressInfrastructureRole",
+  "serviceName": "sharman-amazon-demo",
+  "cluster": "sharman-judging",
+  "healthCheckPath": "/health",
+  "primaryContainer": {
+    "image": "926642724277.dkr.ecr.ap-southeast-2.amazonaws.com/sharman-amazon-demo:judging-20261020-8f847156",
+    "containerPort": 4179,
+    "awsLogsConfiguration": { "logGroup": "/ecs/sharman-amazon-demo", "logStreamPrefix": "judging" },
+    "environment": [
+      { "name": "NODE_ENV", "value": "production" },
+      { "name": "TZ", "value": "Asia/Kolkata" },
+      { "name": "AWS_REGION", "value": "ap-southeast-2" },
+      { "name": "SHARMAN_AWS_BEDROCK_ENABLED", "value": "false" }
+    ]
+  },
+  "cpu": "256",
+  "memory": "512",
+  "cpuArchitecture": "X86_64",
+  "scalingTarget": { "minTaskCount": 1, "maxTaskCount": 1, "autoScalingMetric": "AVERAGE_CPU", "autoScalingTargetValue": 70 },
+  "tags": [
+    { "key": "Project", "value": "SHARMAN" },
+    { "key": "Environment", "value": "Judging" }
+  ]
+}

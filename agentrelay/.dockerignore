@@ -1,0 +1,32 @@
+# Allowlist the build inputs. Never send the repository's private/runtime data
+# (or unrelated desktop projects) to the Docker builder or registry.
+**
+!Dockerfile.amazon
+!sharman-mcp/
+sharman-mcp/**
+!sharman-mcp/package.json
+!sharman-mcp/package-lock.json
+!sharman-mcp/tsconfig.json
+!sharman-mcp/src/
+!sharman-mcp/src/**
+!sharman-web/
+sharman-web/**
+!sharman-web/package.json
+!sharman-web/package-lock.json
+!sharman-web/index.html
+!sharman-web/tsconfig*.json
+!sharman-web/vite.config.ts
+!sharman-web/src/
+!sharman-web/src/**
+**/node_modules
+**/dist
+**/.data
+**/target
+**/.aws
+**/.env*
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/*.log
+**/*.pem
+**/*.key
