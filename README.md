@@ -343,18 +343,18 @@ npm run rehearse:amazon -- --runs 3
 
 ## 📚 Key Documentation
 
-Explore detailed architectural and operational documentation in [`agentrelay/docs/`](agentrelay/docs/):
+Explore the public guides and implementation files included in this repository:
 
-- 📋 [**Submission Readiness & Release Checklist**](agentrelay/docs/SUBMISSION_READINESS.md)
-- 🎙️ [**Amazon Alexa+ Hackathon Submission Guide**](agentrelay/docs/AMAZON_ALEXA_SUBMISSION.md)
-- 🏡 [**SHARMAN Home Architecture**](agentrelay/docs/SHARMAN_HOME_ARCHITECTURE.md)
-- 🔔 [**Ring Adapter & Developer Platform Integration**](agentrelay/docs/RING_ADAPTER.md)
-- ☁️ [**AWS Bedrock Integration & Reproduction**](agentrelay/docs/AWS_BEDROCK_INTEGRATION.md)
-- 🚀 [**AWS Judging Deployment & Evidence**](agentrelay/docs/AWS_JUDGING_DEPLOYMENT.md)
-- 🛡️ [**Supervisor & Permission Engine Spec**](agentrelay/docs/SHARMAN_SUPERVISOR.md)
-- 📧 [**Inbox Intelligence & PKCE Model**](agentrelay/docs/INBOX_INTELLIGENCE.md)
-- 🏛️ [**AgentRelay Core Architecture & Dependency Rules**](agentrelay/docs/ARCHITECTURE.md)
-- 🔌 [**Plugin & Provider SDK**](agentrelay/docs/PLUGIN_SDK.md)
+- 📋 [**Application Overview & Capabilities**](agentrelay/README.md)
+- 🎙️ [**MCP Bridge Setup & Tools**](agentrelay/sharman-mcp/README.md)
+- 🏡 [**Web Console Setup**](agentrelay/sharman-web/README.md)
+- 🔔 [**Ring Fixtures & Source Provenance**](agentrelay/sharman-mcp/test-fixtures/ring/README.md)
+- ☁️ [**Bedrock Adapter & Deterministic Fallback**](agentrelay/sharman-mcp/src/bedrock.ts)
+- 🚀 [**Web/MCP Container Build**](agentrelay/Dockerfile.amazon)
+- 🛡️ [**Native Supervisor & Permission Enforcement**](agentrelay/frontend/src-tauri/src/supervisor.rs)
+- 📧 [**Gmail OAuth & Inbox Implementation**](agentrelay/frontend/src-tauri/src/gmail.rs)
+- 🔌 [**Plugin Contracts & Registry**](agentrelay/crates/agentrelay-core/src/sdk.rs)
+- 📝 [**Amazon Developer Hackathon Friction Log**](agentrelay/docs/FRICTION_LOG.md)
 
 ---
 

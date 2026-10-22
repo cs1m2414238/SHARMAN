@@ -10,23 +10,23 @@ Version 0.22.1-alpha.1 keeps the hardened local workflow and adds the first pers
 
 [Open SHARMAN](https://sh-62bba116286d48cfb495d1a3677193ba.ecs.ap-southeast-2.on.aws/) · [Alexa+ simulation](https://sh-62bba116286d48cfb495d1a3677193ba.ecs.ap-southeast-2.on.aws/alexa) · [MCP](https://sh-62bba116286d48cfb495d1a3677193ba.ecs.ap-southeast-2.on.aws/mcp) · [Health](https://sh-62bba116286d48cfb495d1a3677193ba.ecs.ap-southeast-2.on.aws/health).
 
-[Tasks](https://sh-62bba116286d48cfb495d1a3677193ba.ecs.ap-southeast-2.on.aws/tasks) now starts clean, without fake video/project to-dos. The updated UI adds real task creation, clearer navigation, prominent confirmed execution receipts and an explicit required-permission vs agent-ceiling comparison in [Home](https://sh-62bba116286d48cfb495d1a3677193ba.ecs.ap-southeast-2.on.aws/home). [Polish verification](docs/UI_RECORDING_POLISH.md): 17 backend tests, six Tasks and eleven Home browser/accessibility states, container restart and actual public MCP/denial acceptance pass.
+[Tasks](https://sh-62bba116286d48cfb495d1a3677193ba.ecs.ap-southeast-2.on.aws/tasks) starts clean, without prefilled project to-dos. The UI provides task creation, confirmed execution receipts and an explicit required-permission vs agent-ceiling comparison in [Home](https://sh-62bba116286d48cfb495d1a3677193ba.ecs.ap-southeast-2.on.aws/home). Browser and accessibility checks are available in the [Tasks](sharman-web/scripts/tasks-qa.mjs) and [Home](sharman-web/scripts/home-qa.mjs) validation scripts.
 
 Hosted on AWS ECS Express Mode in Sydney with one small non-root task. The public console uses **shared disposable sample data**: do not enter private information. It does not connect to personal Gmail, the Windows database or desktop notifications. The MCP protocol, bounded supervisor, permission checks, reminder records and audit trail are real. App Runner is blocked by the account's organization policy, so the owner-approved ECS fallback is used.
 
-Feature scope and architecture are frozen. [Deployment evidence and maintenance](docs/AWS_JUDGING_DEPLOYMENT.md) records hosting, image scans, the fixed concurrent-start bug and live checks. The [public Ring presentation update](docs/RING_PUBLIC_DEPLOYMENT.md) separates dated local API validation from public connection health and safety simulations. [Submission readiness](docs/SUBMISSION_READINESS.md) tracks Gmail recovery/deadline acceptance, the final RC, three qualified rehearsals and recording. A visible Windows reminder is now owner-observed PASS. Public hosting does not close the remaining native/release gates; Bedrock stays disabled and optional.
+Feature scope and architecture are frozen. The [Dockerfile](Dockerfile.amazon) contains the portable web/MCP container build. The public Ring panel shows current connection health separately from safety simulations. Native Gmail recovery/deadline acceptance, the final RC, qualified rehearsals and recording remain separate release gates. A visible Windows reminder is owner-observed PASS. Bedrock stays disabled and optional on the public service.
 
-**20 October local AWS validation:** Nova 2 Lite (`global.amazon.nova-2-lite-v1:0`, source Region `ap-southeast-2`) now passes real SDK JSON and SHARMAN REST/MCP inference with temporary credentials. Local Only exclusion, denied-lock preservation, output rejection and credential/error fallback pass. Connections only says Connected after a validated call in that process. This opt-in capability is disabled by default and has **not** been enabled or redeployed on the shared public service. [Live evidence and reproduction](docs/AWS_BEDROCK_INTEGRATION.md).
+**20 October local AWS validation:** Nova 2 Lite (`global.amazon.nova-2-lite-v1:0`, source Region `ap-southeast-2`) passes real SDK JSON and SHARMAN REST/MCP inference with temporary credentials. Local Only exclusion, denied-lock preservation, output rejection and credential/error fallback pass. Connections only says Connected after a validated call in that process. This opt-in capability is disabled by default and has **not** been enabled on the shared public service. See the [Bedrock adapter](sharman-mcp/src/bedrock.ts) and [live-validation script](sharman-mcp/scripts/bedrock-live-validation.mjs) for the implementation and validation workflow.
 
-The public inbox provides explicitly requested sample data independently of native Gmail. Official Ring Developer Playground discovery, device status and event-history access passed live local validation. The public Home panel shows current connection health separately from the safety scenarios. Historical validation evidence stays in documentation; live device data requires a configured local connection. Three SHARMAN safety scenarios and Alexa+ speech remain disclosed simulations. Live Ring Motion webhook delivery, physical hardware and Alexa speech are unverified. See the [Ring adapter](docs/RING_ADAPTER.md), [public Ring update](docs/RING_PUBLIC_DEPLOYMENT.md) and [2:50 recording plan](docs/DEMO_SCRIPT.md).
+The public inbox provides explicitly requested sample data independently of native Gmail. Official Ring Developer Playground discovery, device status and event-history access passed live local validation. The public Home panel shows current connection health separately from the safety scenarios; live device data requires a configured local connection. Three SHARMAN safety scenarios and Alexa+ speech remain disclosed simulations. Live Ring Motion webhook delivery, physical hardware and Alexa speech are unverified. See the [Ring API client](sharman-mcp/src/ring-playground.ts), [fixture provenance](sharman-mcp/test-fixtures/ring/README.md) and [hackathon friction log](docs/FRICTION_LOG.md).
 
 ## Architecture
 
 Submission checks: `npm run validate:amazon` runs the automated release preflight.
 `npm run rehearse:amazon -- --runs 3` performs three fresh isolated API/MCP smoke
 runs without private Gmail, Windows reminder or public-demo writes. Strict RC
-version checks and optional live Bedrock validation are documented in
-[judge rehearsal tooling](docs/JUDGE_REHEARSAL.md). Automated success is not a
+version checks and optional live Bedrock validation are implemented in the
+[judge rehearsal tooling](scripts/judge-rehearsal.mjs). Automated success is not a
 claim that the remaining live-mailbox, installer and owner/UI gates passed.
 
 ```text
@@ -74,15 +74,15 @@ Token Factory           Agent Skill / MCP
 
 The core is a standalone Rust library. Tauri is an adapter, not the application architecture, so the same library can later power a background daemon, CLI, VS Code bridge and MCP server.
 
-See [docs/SHARMAN_ASSISTANT.md](docs/SHARMAN_ASSISTANT.md) for the assistant capability and trust boundary, and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for AgentRelay dependency rules and milestone history.
+See the [assistant router](frontend/src-tauri/src/assistant.rs) for native request handling and the [AgentRelay core](crates/agentrelay-core/src/lib.rs) for the reusable application layer.
 
-See [docs/SHARMAN_SUPERVISOR.md](docs/SHARMAN_SUPERVISOR.md) for the supervisor, tool registry, personal-task database, reminder scheduler, and current MVP command contract.
+The [native supervisor](frontend/src-tauri/src/supervisor.rs), [typed tools](frontend/src-tauri/src/assistant_tools.rs) and [personal store](frontend/src-tauri/src/personal.rs) implement permission enforcement, tasks and reminder scheduling.
 
-See [docs/INBOX_INTELLIGENCE.md](docs/INBOX_INTELLIGENCE.md) for the read-only Gmail OAuth flow, Windows Credential Manager boundary, deterministic email action extraction, and Action Inbox audit model.
+The [Gmail module](frontend/src-tauri/src/gmail.rs) implements read-only OAuth, Windows Credential Manager storage and deterministic email action extraction.
 
-See [docs/AMAZON_ALEXA_SUBMISSION.md](docs/AMAZON_ALEXA_SUBMISSION.md) for the hackathon web console, Streamable HTTP MCP bridge, exact demo flow, and remaining submission work.
+See the [MCP bridge guide](sharman-mcp/README.md) and [web console guide](sharman-web/README.md) for setup and the public simulation surfaces.
 
-See [docs/SHARMAN_HOME_ARCHITECTURE.md](docs/SHARMAN_HOME_ARCHITECTURE.md), [docs/AWS_BEDROCK_INTEGRATION.md](docs/AWS_BEDROCK_INTEGRATION.md), [docs/HACKATHON_CHANGELOG.md](docs/HACKATHON_CHANGELOG.md), [docs/FRICTION_LOG.md](docs/FRICTION_LOG.md), and [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md) for **SHARMAN Home** (Ring event simulator + constrained `VisitorAgent` + simulated Alexa+ care workflow + opt-in Amazon Bedrock `ConverseCommand` accessibility explanations with deterministic local fallback), the explicit boundary separating the real SHARMAN runtime from simulated Ring/Alexa+ surfaces, and the submission provenance ledger.
+The [Ring fixture guide](sharman-mcp/test-fixtures/ring/README.md) distinguishes captured API responses from synthetic webhook fixtures. The [Home implementation](sharman-web/src/HomeView.tsx), [Bedrock adapter](sharman-mcp/src/bedrock.ts) and [friction log](docs/FRICTION_LOG.md) cover the safety scenarios, optional explanations and integration feedback.
 
 ## Included now
 
@@ -248,9 +248,9 @@ See [docs/SHARMAN_HOME_ARCHITECTURE.md](docs/SHARMAN_HOME_ARCHITECTURE.md), [doc
 - Separate Nebius and Amazon integration modules
 - Git-backed and SQLite-backed Rust tests
 
-Run `./scripts/Invoke-RcQualification.ps1` from PowerShell 7 and review [the RC criteria](docs/RELEASE_CANDIDATE.md), [compatibility matrix](docs/COMPATIBILITY.md), and [privacy policy](docs/PRIVACY_AND_TELEMETRY.md). The local unsigned NSIS build is test evidence, not a public v1.0 installer. General agent-controlled source-changing actions remain outside the local trust boundary; the MCP bridge exposes a small, permission-annotated personal-productivity tool set instead.
+Run the [RC qualification script](scripts/Invoke-RcQualification.ps1) from PowerShell 7 and review the [native bundle configuration](frontend/src-tauri/tauri.conf.json) and [public setup and security notes](../README.md). The local unsigned NSIS build is test evidence, not a public v1.0 installer. General agent-controlled source-changing actions remain outside the local trust boundary; the MCP bridge exposes a small, permission-annotated personal-productivity tool set instead.
 
-See [docs/PLUGIN_SDK.md](docs/PLUGIN_SDK.md) for the manifest format, compatibility policy, and extension boundaries.
+See the [plugin contracts and registry](crates/agentrelay-core/src/sdk.rs) for manifest parsing, compatibility checks and extension boundaries.
 
 ## Repository structure
 
