@@ -1,4 +1,0 @@
-# The preparation helper verifies this local tag against the deployed immutable
-# ECR digest before building. No runtime files, environment or permissions change.
-FROM sharman-amazon-demo:tasks-ui-20261020
-COPY --chown=65532:65532 web/ /app/web/

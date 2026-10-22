@@ -26,12 +26,18 @@ dist-ssr
 # Earlier standalone dashboard; the active console is agentrelay/sharman-web/.
 /sharman-web/
 
+# Account-specific rollout scripts and saved deployment payloads stay local.
+# Dockerfile.amazon and .dockerignore remain tracked for portable builds.
+/agentrelay/deploy/aws/
+
 # Documentation, handoffs and project tracking stay local.
 docs/
 documentation/
 notes/
 *.md
 *.markdown
+!README.md
+!**/README.md
 notes*.txt
 AGENT_CONTEXT*
 .agentrelay/
@@ -48,8 +54,43 @@ coverage/
 *.db-wal
 *.sqlite
 *.sqlite3
+*.db-journal
+*.sqlite-shm
+*.sqlite-wal
+*.sqlite-journal
+*.sqlite3-shm
+*.sqlite3-wal
+*.sqlite3-journal
 agentrelay/frontend/src-tauri/gen/
 agentrelay/workspace/
+
+# Tool caches, test reports and packaged Windows build outputs.
+.vite/
+.eslintcache
+.nyc_output/
+playwright-report/
+test-results/
+/agentrelay/artifacts/
+/agentrelay/releases/
+*.exe
+*.dll
+*.pdb
+*.msi
+*.msix
+*.msixbundle
+
+# Local editor settings, temporary files and backups.
+.vscode/
+.vs/
+.history/
+*.code-workspace
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*~
+Desktop.ini
 
 # Credentials are supplied at runtime. Only empty example files may be tracked.
 .aws/
@@ -67,3 +108,8 @@ tokens.json
 *.p12
 *.pfx
 *.key
+
+# Public hackathon feedback is the only documentation included in Git.
+!/agentrelay/docs/
+/agentrelay/docs/*
+!/agentrelay/docs/FRICTION_LOG.md

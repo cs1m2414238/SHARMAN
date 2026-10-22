@@ -1,9 +1,0 @@
-{
-  "Version": "2012-10-17",
-  "Statement": [{
-    "Sid": "AllowECSExpressInfrastructure",
-    "Effect": "Allow",
-    "Principal": { "Service": "ecs.amazonaws.com" },
-    "Action": "sts:AssumeRole"
-  }]
-}
